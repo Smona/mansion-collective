@@ -35,6 +35,16 @@ class App extends Component {
     onPageNotFound: PropTypes.func.isRequired,
   };
 
+  constructor() {
+    super();
+
+    // Initially set the background during SSR
+    if (typeof document !== 'undefined') {
+      const bgIndex = Math.floor(Math.random() * backgrounds.length);
+      this.background = backgrounds[bgIndex];
+    }
+  }
+
   getChildContext() {
     const context = this.props.context;
     return {
@@ -48,8 +58,6 @@ class App extends Component {
   componentWillMount() {
     const { insertCss } = this.props.context;
     this.removeCss = insertCss(s);
-    const bgIndex = Math.floor(Math.random() * backgrounds.length);
-    this.background = this.background || backgrounds[bgIndex];
   }
 
   componentWillReceiveProps(newProps) {
