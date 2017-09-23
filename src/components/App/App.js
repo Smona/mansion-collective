@@ -10,6 +10,7 @@
 import React, { Component, PropTypes } from 'react';
 import emptyFunction from 'fbjs/lib/emptyFunction';
 import s from './App.scss';
+import { randInt } from "../../core/math";
 import backgrounds from './backgrounds';
 import Header from '../Header';
 import Feedback from '../Feedback';
@@ -38,7 +39,7 @@ class App extends Component {
   static getStyle() {
     // Initially set the background after SSR
     if (typeof document !== 'undefined') {
-      const bgIndex = Math.floor(Math.random() * backgrounds.length);
+      const bgIndex = randInt(backgrounds.length);
       return {
         background: `fixed url('${backgrounds[bgIndex]}') center/cover`,
       };

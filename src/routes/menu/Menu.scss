@@ -34,7 +34,17 @@
   transition: top $animation-swift-out;
 }
 
+.hallucination {
+  color: transparent;
+}
+.hallucination > span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: black;
+}
+
 .stretch {
   transform-origin: center;
-  transform: scaleY(6);
+  transform: scale(6, 0);
 }

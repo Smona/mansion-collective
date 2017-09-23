@@ -9,6 +9,7 @@
 
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import { randInt } from "../../core/math";
 import s from './Menu.scss';
 import effects from './HoverEffects';
 import Link from '../../components/Link';
@@ -22,7 +23,7 @@ const effectsList = Object.keys(effects);
 let currentHoverEffect;
 function addHoverStyle(e) {
   // Pick a new text effect randomly
-  const effectIndex = Math.floor(Math.random() * effectsList.length);
+  const effectIndex = randInt(effectsList.length);
   currentHoverEffect = effectsList[effectIndex];
   effects[currentHoverEffect].enable(e.target);
 }
