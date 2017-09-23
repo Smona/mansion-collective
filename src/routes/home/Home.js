@@ -10,12 +10,15 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.scss';
+import Link from '../../components/Link';
 
 function Home({ news }) {
   return (
     <div className={s.root}>
       <div className={s.container}>
-        <img className={s.logo} src={require('../../assets/mansion_logo_transparent.png')} />
+        <Link className={s.link} to="/menu">
+          <img className={s.logo} src={require('../../assets/mansion_logo_transparent.png')} />
+        </Link>
       </div>
     </div>
   );

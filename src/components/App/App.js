@@ -36,16 +36,13 @@ class App extends Component {
   };
 
   static getStyle() {
-    // Initially set the background during SSR
-    if (typeof document === 'undefined') {
+    // Initially set the background after SSR
+    if (typeof document !== 'undefined') {
       const bgIndex = Math.floor(Math.random() * backgrounds.length);
       return {
         background: `fixed url('${backgrounds[bgIndex]}') center/cover`,
       };
     }
-
-    // Don't override background on render
-    return {};
   }
 
   getChildContext() {
