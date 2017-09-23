@@ -22,9 +22,13 @@ const menuItems = {
 const effectsList = Object.keys(effects);
 let currentHoverEffect;
 function addHoverStyle(e) {
-  // Pick a new text effect randomly
-  const effectIndex = randInt(effectsList.length);
-  currentHoverEffect = effectsList[effectIndex];
+  // Pick a new text effect randomly, making sure not to repeat
+  let newEffect;
+  do {
+    const effectIndex = randInt(effectsList.length);
+    newEffect = effectsList[effectIndex];
+  } while (newEffect === currentHoverEffect);
+  currentHoverEffect = newEffect;
   effects[currentHoverEffect].enable(e.target);
 }
 
