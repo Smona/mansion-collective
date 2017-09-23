@@ -35,14 +35,17 @@ class App extends Component {
     onPageNotFound: PropTypes.func.isRequired,
   };
 
-  constructor() {
-    super();
-
+  static getStyle() {
     // Initially set the background during SSR
-    if (typeof document !== 'undefined') {
+    if (typeof document === 'undefined') {
       const bgIndex = Math.floor(Math.random() * backgrounds.length);
-      this.background = backgrounds[bgIndex];
+      return {
+        background: `fixed url('${backgrounds[bgIndex]}') center/cover`,
+      };
     }
+
+    // Don't override background on render
+    return {};
   }
 
   getChildContext() {
@@ -60,19 +63,13 @@ class App extends Component {
     this.removeCss = insertCss(s);
   }
 
-  componentWillReceiveProps(newProps) {
-    console.log(newProps);
-  }
-
   componentWillUnmount() {
     this.removeCss();
   }
 
   render() {
     return !this.props.error ? (
-      <div id={'app-root'} style={{
-        background: `fixed url('${this.background}') center/cover` }}
-      >
+      <div id={'app-root'} style={App.getStyle()}>
         {/*<Header />*/}
         {this.props.children}
         {/*<Feedback />*/}
