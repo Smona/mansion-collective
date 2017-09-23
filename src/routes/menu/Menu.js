@@ -18,12 +18,17 @@ const menuItems = {
   Thesis: '/thesis',
 };
 
+const effectsList = Object.keys(effects);
+let currentHoverEffect;
 function addHoverStyle(e) {
-  effects.addCascade(e.target);
+  // Pick a new text effect randomly
+  const effectIndex = Math.floor(Math.random() * effectsList.length);
+  currentHoverEffect = effectsList[effectIndex];
+  effects[currentHoverEffect].enable(e.target);
 }
 
 function removeHoverStyle(e) {
-  effects.removeCascade(e.target);
+  effects[currentHoverEffect].disable(e.target);
 }
 
 function Menu() {

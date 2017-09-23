@@ -33,3 +33,8 @@
   position: absolute;
   transition: top $animation-swift-out;
 }
+
+.stretch {
+  transform-origin: center;
+  transform: scaleY(6);
+}
