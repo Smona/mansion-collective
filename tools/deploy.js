@@ -15,8 +15,8 @@ import fetch from './lib/fetch';
 // For more information visit http://gitolite.com/deploy.html
 const getRemote = (slot) => ({
   name: slot || 'production',
-  url: `https://example${slot ? `-${slot}` : ''}.scm.azurewebsites.net:443/example.git`,
-  website: `http://example${slot ? `-${slot}` : ''}.azurewebsites.net`,
+  url: `git@heroku.com:mansion-collective${slot ? `-${ slot }` : ''}.git`,
+  website: `http://mansion-collective${slot ? `-${slot}` : ''}.herokuapp.com`,
 });
 
 /**
@@ -30,14 +30,16 @@ async function deploy() {
   // Initialize a new Git repository inside the `/build` folder
   // if it doesn't exist yet
   const repo = await GitRepo.open('build', { init: true });
-  await repo.setRemote(remote.name, remote.url);
+
+  // Disabling these steps because heroku handles it for us:
+  // await repo.setRemote(remote.name, remote.url);
 
   // Fetch the remote repository if it exists
-  if ((await repo.hasRef(remote.url, 'master'))) {
-    await repo.fetch(remote.name);
-    await repo.reset(`${remote.name}/master`, { hard: true });
-    await repo.clean({ force: true });
-  }
+  // if ((await repo.hasRef(remote.url, 'master'))) {
+  //   await repo.fetch(remote.name);
+  //   await repo.reset(`${remote.name}/master`, { hard: true });
+  //   await repo.clean({ force: true });
+  // }
 
   // Build the project in RELEASE mode which
   // generates optimized and minimized bundles
