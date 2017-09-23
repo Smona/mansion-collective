@@ -10,6 +10,7 @@
 import React, { Component, PropTypes } from 'react';
 import emptyFunction from 'fbjs/lib/emptyFunction';
 import s from './App.scss';
+import backgrounds from './backgrounds';
 import Header from '../Header';
 import Feedback from '../Feedback';
 import Footer from '../Footer';
@@ -47,6 +48,12 @@ class App extends Component {
   componentWillMount() {
     const { insertCss } = this.props.context;
     this.removeCss = insertCss(s);
+    const bgIndex = Math.floor(Math.random() * backgrounds.length);
+    this.background = this.background || backgrounds[bgIndex];
+  }
+
+  componentWillReceiveProps(newProps) {
+    console.log(newProps);
   }
 
   componentWillUnmount() {
@@ -55,11 +62,13 @@ class App extends Component {
 
   render() {
     return !this.props.error ? (
-      <div>
-        <Header />
+      <div id={'app-root'} style={{
+        background: `fixed url('${this.background}') center/cover` }}
+      >
+        {/*<Header />*/}
         {this.props.children}
-        <Feedback />
-        <Footer />
+        {/*<Feedback />*/}
+        {/*<Footer />*/}
       </div>
     ) : this.props.children;
   }
