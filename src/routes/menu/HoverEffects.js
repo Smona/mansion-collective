@@ -42,6 +42,31 @@ export default {
     },
   },
 
+  drunk: {
+    enable(el) {
+      el.classList.add(s.drunk);
+      const originalString = el.innerHTML;
+      let jumbledString;
+      do {
+        jumbledString = '';
+        for (const letter of originalString) {
+          const position = randInt(jumbledString.length + 1);
+          jumbledString = jumbledString.substr(0, position) +
+            letter +
+            jumbledString.substr(position, jumbledString.length);
+        }
+      } while (jumbledString === originalString);
+
+      el.innerHTML = `<span style="display: none;">${originalString}</span>
+        <span>${jumbledString}</span>`;
+    },
+
+    disable(el) {
+      el.classList.remove(s.drunk);
+      el.innerHTML = el.firstChild.innerHTML;
+    },
+  },
+
   // Vertically stretches word
   elongation: {
     enable(el) {

@@ -44,6 +44,10 @@
   color: black;
 }
 
+.drunk {
+  filter: blur(2px);
+}
+
 .stretch {
   transform-origin: center;
   transform: scaleY(6);
