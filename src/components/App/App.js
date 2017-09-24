@@ -36,13 +36,18 @@ class App extends Component {
     onPageNotFound: PropTypes.func.isRequired,
   };
 
-  static getStyle() {
-    // Initially set the background after SSR
-    if (typeof document !== 'undefined') {
-      const bgIndex = randInt(backgrounds.length);
-      return {
-        background: `fixed url('${backgrounds[bgIndex]}') center/cover`,
-      };
+  constructor() {
+    super();
+    this.changeBackground = this.changeBackground.bind(this);
+
+    // Initially choose random bg on serer
+    if (typeof document === 'undefined') {
+      this.state = { background: this.changeBackground() };
+
+    // On client, don't override SSR-provided background
+    } else {
+      const ssrBackground = document.getElementById('app-root').style.backgroundImage;
+      this.state = { background: ssrBackground.split('"')[1] };
     }
   }
 
@@ -61,13 +66,30 @@ class App extends Component {
     this.removeCss = insertCss(s);
   }
 
+  componentWillUpdate() {
+    // Change background on each page change
+    this.setState({ background: this.changeBackground() });
+  }
+
   componentWillUnmount() {
     this.removeCss();
   }
 
+  changeBackground() {
+    let newBackground;
+    do {
+      const bgIndex = randInt(backgrounds.length);
+      newBackground = backgrounds[bgIndex];
+    } while (!!this.state && !!this.state.background &&
+             newBackground === this.state.background);
+    return newBackground;
+  }
+
   render() {
     return !this.props.error ? (
-      <div id={'app-root'} style={App.getStyle()}>
+      <div id={'app-root'} style={{
+        background: `fixed url('${this.state.background}') center/cover` }}
+      >
         {/*<Header />*/}
         {this.props.children}
         {/*<Feedback />*/}
