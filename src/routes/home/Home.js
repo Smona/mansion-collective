@@ -9,47 +9,18 @@
 
 import React, { Component } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import LogoFills from '../../assets/MansionLogoFills';
-import LogoTransparent from '../../assets/mansion_logo_transparent.png';
 import s from './Home.scss';
 import Link from '../../components/Link';
-import { randInt } from '../../core/math';
+import DynamicLogo from '../../components/DynamicLogo';
 
 class Home extends Component {
-
-  constructor() {
-    super();
-    if (typeof document === 'undefined' || !document.querySelector(`.${s.fill}`)) {
-      this.state = { fill: LogoFills[randInt(LogoFills.length)] };
-    } else {
-      const ssrFill = document.querySelector(`.${s.fill}`).src;
-      const splitURL = ssrFill.split('/');
-      const path = `/${splitURL[splitURL.length - 1]}`;
-      this.state = { fill: path };
-    }
-
-    this.changeFill = this.changeFill.bind(this);
-  }
-
-  changeFill() {
-    let newFill;
-    do {
-      const newIdx = randInt(LogoFills.length);
-      newFill = LogoFills[newIdx];
-    } while (newFill === this.fill);
-
-    setTimeout(() => {
-      this.setState({ fill: newFill });
-    }, 100);
-  }
 
   render() {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <Link className={s.link} to="/menu" onMouseLeave={this.changeFill}>
-            <img className={s.fill} src={this.state.fill} />
-            <img className={s.logo} src={LogoTransparent} />
+          <Link className={s.link} to="/menu">
+            <DynamicLogo/>
           </Link>
         </div>
       </div>

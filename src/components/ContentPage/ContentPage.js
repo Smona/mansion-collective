@@ -10,12 +10,14 @@
 import React, { Component, PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './ContentPage.scss';
+import Link from '../Link';
+import DynamicLogo from '../DynamicLogo';
 
 class ContentPage extends Component {
 
   static propTypes = {
-    path: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
+    path: PropTypes.string,
+    content: PropTypes.string,
     title: PropTypes.string,
   };
 
@@ -30,9 +32,12 @@ class ContentPage extends Component {
   render() {
     return (
       <div className={s.root}>
+        {/* Home Link */}
+        <Link to={'/menu'} className={s.homeLink}>
+          <DynamicLogo/>
+        </Link>
         <div className={s.container}>
-          {this.props.path === '/' ? null : <h1>{this.props.title}</h1>}
-          <div dangerouslySetInnerHTML={{ __html: this.props.content || '' }} />
+          {this.props.children}
         </div>
       </div>
     );

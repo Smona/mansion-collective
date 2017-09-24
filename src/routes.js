@@ -21,6 +21,7 @@ const routes = [
   require('./routes/login'),
   require('./routes/register'),
   require('./routes/menu'),
+  require('./routes/thesis'),
 ];
 
 const router = new Router(on => {

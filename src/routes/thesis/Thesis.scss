@@ -16,19 +16,16 @@
 
 .container {
   margin: 0 auto;
-  height: 100vh;
-  padding: 0;
+  //padding: 0 0 40px;
   max-width: $max-content-width;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: center;
 }
 
-.link {
+.thesis {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+h1 {
   text-align: center;
-  position: relative;
-  width: 350px;
-  max-width: 70%;
-  max-height: 70vh;
+  font-size: 7em;
+  text-transform: uppercase;
 }

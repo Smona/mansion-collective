@@ -1,0 +1,14 @@
+.logo, .fill {
+  width: 100%;
+}
+
+.fill {
+  opacity: 0;
+  transition: opacity .1s;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+a:hover .fill, a:active .fill {
+  opacity: 1;
+}

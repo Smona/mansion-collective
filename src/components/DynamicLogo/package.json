@@ -1,0 +1,6 @@
+{
+  "name": "DynamicLogo",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./DynamicLogo.js"
+}

@@ -10,11 +10,18 @@
 @import '../variables.scss';
 
 .root {
-
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
 }
 
 .container {
-  margin: 0 auto;
-  padding: 0 0 40px;
-  max-width: $max-content-width;
+}
+
+.homeLink {
+  $padding: 10px;
+  position: fixed;
+  top: $padding;
+  left: $padding;
+  width: 50px;
 }

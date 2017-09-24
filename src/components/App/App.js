@@ -91,7 +91,7 @@ class App extends Component {
 
   render() {
     return !this.props.error ? (
-      <div id={'app-root'} style={{
+      <div id={'app-root'} className={s.app} style={{
         background: `fixed url('${this.state.background}') center/cover` }}
       >
         {/*<Header />*/}
