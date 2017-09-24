@@ -4,5 +4,12 @@ import hermes from './hermes.png';
 import hermesWhite from './hermes white.png';
 import hermesInvert from './hermes inverted.png';
 import metalMansion from './MANSION.png';
+import froggyPattern from './froggy_pattern.png';
+import spaceFroggy from './space_froggy.png';
 
-export default [deathAndLife, hermes, metalMansion, heartFace, hermesWhite, hermesInvert];
+export default [deathAndLife,
+  hermes, hermesWhite, hermesInvert,
+  metalMansion,
+  heartFace,
+  froggyPattern, spaceFroggy,
+];
