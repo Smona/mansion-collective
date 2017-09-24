@@ -66,9 +66,13 @@ class App extends Component {
     this.removeCss = insertCss(s);
   }
 
-  componentWillUpdate() {
+  componentWillUpdate(newProps) {
     // Change background on each page change
-    this.setState({ background: this.changeBackground() });
+    const previousView = this.props.children.type.ComposedComponent;
+    const nextView = newProps.children.type.ComposedComponent;
+    if (previousView !== nextView) {
+      this.setState({ background: this.changeBackground() });
+    }
   }
 
   componentWillUnmount() {

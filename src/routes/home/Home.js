@@ -19,7 +19,7 @@ class Home extends Component {
 
   constructor() {
     super();
-    if (typeof document === 'undefined') {
+    if (typeof document === 'undefined' || !document.querySelector(`.${s.fill}`)) {
       this.state = { fill: LogoFills[randInt(LogoFills.length)] };
     } else {
       const ssrFill = document.querySelector(`.${s.fill}`).src;
