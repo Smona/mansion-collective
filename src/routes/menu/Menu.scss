@@ -34,6 +34,11 @@
   transition: top $animation-swift-out;
 }
 
+.cloud > img {
+  max-width: 100%;
+  width: 170px;
+}
+
 .hallucination {
   color: transparent;
 }

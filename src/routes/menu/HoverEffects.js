@@ -1,12 +1,15 @@
 import s from './Menu.scss';
 import { randInt } from '../../core/math';
+import CloudTexts from './CloudTexts';
 
 export default {
+  // Creates multiple copies of menu item and exponentially shifts them down
   cascade: {
     enable(el) {
       el.classList.add(s.cascade);
+      const copyCount = 5;
       const itemText = el.innerHTML;
-      for (let i = 1; i <= 5; i++) {
+      for (let i = 1; i <= copyCount; i++) {
         el.innerHTML += `<div class="${s.cascadeEl}" style="top: ${i * i * 5}px">${itemText}</div>`;
       }
     },
@@ -14,6 +17,19 @@ export default {
     disable(el) {
       el.classList.remove(s.cascade);
       el.innerHTML = el.innerHTML.split('<div')[0];
+    },
+  },
+
+  // Displays the menu item in a happy cloud
+  cloud: {
+    enable(el) {
+      el.classList.add(s.cloud);
+      el.innerHTML = `<img src="${CloudTexts[el.innerHTML.toLowerCase()]}"
+                            alt="${el.innerHTML}"/>`;
+    },
+
+    disable(el) {
+      el.innerHTML = el.lastChild.alt;
     },
   },
 
@@ -42,6 +58,7 @@ export default {
     },
   },
 
+  // Randomly shuffles letters and applies blur
   drunk: {
     enable(el) {
       el.classList.add(s.drunk);
