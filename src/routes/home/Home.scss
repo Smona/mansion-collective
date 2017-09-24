@@ -27,11 +27,23 @@
 
 .link {
   text-align: center;
-  width: max-content;
-}
-
-.logo {
+  position: relative;
   width: 350px;
   max-width: 70%;
   max-height: 70vh;
+}
+
+.logo, .fill {
+  width: 100%;
+}
+
+.fill {
+  opacity: 0;
+  transition: opacity .1s;
+  position: absolute;
+  top: 5px;
+  left: 1px;
+}
+.fill:hover {
+  opacity: 1;
 }
