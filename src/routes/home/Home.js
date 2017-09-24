@@ -19,20 +19,27 @@ class Home extends Component {
 
   constructor() {
     super();
-    this.state = {
-      fill: randInt(LogoFills.length)
-    };
+    if (typeof document === 'undefined') {
+      this.state = { fill: LogoFills[randInt(LogoFills.length)] };
+    } else {
+      const ssrFill = document.querySelector(`.${s.fill}`).src;
+      const splitURL = ssrFill.split('/');
+      const path = `/${splitURL[splitURL.length - 1]}`;
+      this.state = { fill: path };
+    }
+
     this.changeFill = this.changeFill.bind(this);
   }
 
   changeFill() {
-    let newIdx;
+    let newFill;
     do {
-      newIdx = randInt(LogoFills.length);
-    } while (newIdx === this.fill);
+      const newIdx = randInt(LogoFills.length);
+      newFill = LogoFills[newIdx];
+    } while (newFill === this.fill);
 
     setTimeout(() => {
-      this.setState({ fill: newIdx });
+      this.setState({ fill: newFill });
     }, 100);
   }
 
@@ -41,7 +48,7 @@ class Home extends Component {
       <div className={s.root}>
         <div className={s.container}>
           <Link className={s.link} to="/menu" onMouseLeave={this.changeFill}>
-            <img className={s.fill} src={LogoFills[this.state.fill]} />
+            <img className={s.fill} src={this.state.fill} />
             <img className={s.logo} src={LogoTransparent} />
           </Link>
         </div>
