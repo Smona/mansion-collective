@@ -10,7 +10,24 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Artists.scss';
-import Link from "../../components/Link/Link";
+import Link from '../../components/Link/Link';
+
+const hover = {
+  enable(e) {
+    const originalText = e.target.innerHTML;
+    // Use an odd number so middle copy remains in place
+    const wrappedText = new Array(11).fill(originalText).join(' ');
+    e.target.innerHTML = wrappedText;
+    e.target.dataset.originalText = originalText;
+  },
+
+  disable(e) {
+    const el = e.target;
+    if (!!el.dataset.originalText) {
+      el.innerHTML = el.dataset.originalText;
+    }
+  },
+};
 
 const artists = [
   {
@@ -37,15 +54,17 @@ const artists = [
 
 function Artists() {
   return (
-    <div className={s.root}>
       <div className={s.container}>
         <ul className={s.artistList}>
           {artists.map(info =>
-            <li><Link to={`artists/${info.path}`}>{info.name}</Link></li>
+            <li key={info.name}>
+              <Link to={`artists/${info.path}`}
+                onMouseEnter={hover.enable} onMouseLeave={hover.disable}
+              >{info.name}</Link>
+            </li>
           )}
         </ul>
       </div>
-    </div>
   );
 }
 

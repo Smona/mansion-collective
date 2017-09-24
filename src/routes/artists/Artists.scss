@@ -9,26 +9,34 @@
 
 @import '../../components/variables.scss';
 
-.root {
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
 .container {
   margin: 0 auto;
   text-align: center;
-  max-width: $max-content-width;
+  overflow-x: hidden;
+  overflow-y: auto;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
   height: 100vh;
 }
 
 .artistList {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
 .artistList li {
-  margin-top: 2em;
+  $margin: 2em;
+  margin-top: $margin;
+  text-align: center;
+  white-space: nowrap;
+  &:last-of-type {
+    margin-bottom: $margin;
+  }
 }
 .artistList li a {
   font-size: 3em;
