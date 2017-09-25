@@ -1,13 +1,20 @@
 .logo, .fill {
   width: 100%;
+  position: absolute;
+}
+
+.logo {
+  z-index: 5;
+  top: 0;
+  left: 0;
 }
 
 .fill {
+  z-index: 1;
+  top: 1.5%;
+  left: 0.5%;
   opacity: 0;
   transition: opacity .1s;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 a:hover .fill, a:active .fill {
   opacity: 1;

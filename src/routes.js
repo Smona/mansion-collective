@@ -22,6 +22,7 @@ const routes = [
   require('./routes/register'),
   require('./routes/menu'),
   require('./routes/thesis'),
+  require('./routes/profile'),
   require('./routes/artists'),
 ];
 

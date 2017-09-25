@@ -20,7 +20,7 @@ class Home extends Component {
       <div className={s.root}>
         <div className={s.container}>
           <Link className={s.link} to="/menu">
-            <DynamicLogo/>
+            <DynamicLogo size={350} />
           </Link>
         </div>
       </div>

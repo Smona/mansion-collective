@@ -7,20 +7,16 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-@import '../variables.scss';
-
-.root {
-  width: 100vw;
-  height: 100vh;
-  overflow: auto;
-}
+@import '../../components/variables.scss';
 
 .container {
+  margin: 0 auto;
+  padding: 2em 0;
+  overflow-y: auto;
+  height: 100vh;
+  text-align: center;
+  box-sizing: border-box;
 }
 
-.homeLink {
-  $padding: 10px;
-  position: fixed;
-  top: $padding;
-  left: $padding;
+.nameText {
 }

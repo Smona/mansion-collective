@@ -11,6 +11,7 @@ import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Artists.scss';
 import Link from '../../components/Link/Link';
+import artists from '../../data/artists';
 
 const hover = {
   enable(e) {
@@ -29,38 +30,15 @@ const hover = {
   },
 };
 
-const artists = [
-  {
-    name: 'softandasleep',
-    path: 'softandasleep',
-  },
-  {
-    name: 'DJ Gosh',
-    path: 'djgosh',
-  },
-  {
-    name: 'Yessy',
-    path: 'yessy',
-  },
-  {
-    name: 'Delatropic',
-    path: 'delatropic',
-  },
-  {
-    name: 'Guyjin',
-    path: 'guyjin',
-  },
-];
-
 function Artists() {
   return (
       <div className={s.container}>
         <ul className={s.artistList}>
-          {artists.map(info =>
-            <li key={info.name}>
-              <Link to={`artists/${info.path}`}
+          {Object.keys(artists).map(path =>
+            <li key={path}>
+              <Link to={`/artists/${path}`}
                 onMouseEnter={hover.enable} onMouseLeave={hover.disable}
-              >{info.name}</Link>
+              >{artists[path].name}</Link>
             </li>
           )}
         </ul>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './DynamicLogo.scss';
 import { randInt } from '../../core/math';
@@ -35,12 +35,18 @@ class DynamicLogo extends Component {
 
   render() {
     return (
-      <div onMouseLeave={this.changeFill}>
+      <div className={s.root} onMouseLeave={this.changeFill}
+        style={{ width: `${this.props.size}px`, height: `${this.props.size}px` }}
+      >
         <img className={s.fill} src={this.state.fill} />
         <img className={s.logo} src={LogoTransparent} />
       </div>
     );
   }
 }
+
+DynamicLogo.propTypes = {
+  size: PropTypes.number.isRequired,
+};
 
 export default withStyles(DynamicLogo, s);

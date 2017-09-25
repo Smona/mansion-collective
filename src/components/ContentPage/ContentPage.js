@@ -34,7 +34,7 @@ class ContentPage extends Component {
       <div className={s.root}>
         {/* Home Link */}
         <Link to={'/menu'} className={s.homeLink}>
-          <DynamicLogo/>
+          <DynamicLogo size={50} />
         </Link>
         <div className={s.container}>
           {this.props.children}
