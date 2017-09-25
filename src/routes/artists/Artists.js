@@ -17,7 +17,7 @@ const hover = {
   enable(e) {
     const originalText = e.target.innerHTML;
     // Use an odd number so middle copy remains in place
-    const wrappedText = new Array(11).fill(originalText).join(' ');
+    const wrappedText = new Array(21).fill(originalText).join(' ');
     e.target.innerHTML = wrappedText;
     e.target.dataset.originalText = originalText;
   },
