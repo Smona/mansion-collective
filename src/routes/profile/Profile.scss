@@ -15,17 +15,17 @@
   overflow-y: auto;
   text-align: center;
   box-sizing: border-box;
-}
-
-.nameText {
+  max-width: 55em;
 }
 
 img {
   max-width: 100%;
 }
 
+.logo {
+  margin-top: -50px;
+}
+
 .bio {
-  max-width: 60em;
-  margin: 0 auto;
   text-align: left;
 }

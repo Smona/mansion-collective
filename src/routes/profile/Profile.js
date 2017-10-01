@@ -15,9 +15,9 @@ import TextBackground from '../../components/TextBackground';
 function Profile({ artist }) {
   let logo = null;
   if (artist.hasOwnProperty('logo')) {
-    logo = <img src={artist.logo} alt={`${artist.name} logo`} />;
+    logo = <img className={s.logo} src={artist.logo} alt={`${artist.name} logo`} />;
   } else {
-    logo = <h1 className={s.nameText}>{artist.name}</h1>;
+    logo = <h1 className={s.logo}>{artist.name}</h1>;
   }
 
   return (
@@ -37,7 +37,7 @@ function Profile({ artist }) {
 }
 
 Profile.propTypes = {
-  name: PropTypes.string.isRequired,
+  artist: PropTypes.isRequired,
 };
 
 export default withStyles(Profile, s);
