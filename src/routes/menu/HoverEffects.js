@@ -1,6 +1,22 @@
 import s from './Menu.scss';
 import { randInt } from '../../core/math';
 import CloudTexts from './CloudTexts';
+import MetalTexts from './MetalTexts';
+
+function imageEffect(textImages, className=false) {
+  return {
+    enable(el) {
+      if (className) el.classList.add(s[className]);
+      el.innerHTML = `<img src="${textImages[el.innerHTML.toLowerCase()]}"
+                            alt="${el.innerHTML}"/>`;
+    },
+
+    disable(el) {
+      if (className) el.classList.remove(s[className]);
+      el.innerHTML = el.lastChild.alt;
+    },
+  };
+}
 
 export default {
   // Creates multiple copies of menu item and exponentially shifts them down
@@ -21,17 +37,9 @@ export default {
   },
 
   // Displays the menu item in a happy cloud
-  cloud: {
-    enable(el) {
-      el.classList.add(s.cloud);
-      el.innerHTML = `<img src="${CloudTexts[el.innerHTML.toLowerCase()]}"
-                            alt="${el.innerHTML}"/>`;
-    },
+  cloud: imageEffect(CloudTexts, 'img-text'),
 
-    disable(el) {
-      el.innerHTML = el.lastChild.alt;
-    },
-  },
+  metal: imageEffect(MetalTexts, 'img-text'),
 
   // Moves individual letters to a new, random position
   hallucination: {
