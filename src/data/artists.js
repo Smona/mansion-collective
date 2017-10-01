@@ -19,7 +19,7 @@ Let’s all inspire each other and make some really cool stuff!`
     bio: `yessy ( n ): experimenter ⚗️, rower 🚣🏻‍♀️, vintage scoot enthusiast 🛵, pho slurper 🍲, dog person 🐶, hitchhiker 👍🏼, creator 👽, etc.
 
 for inquiries, contact me at jessicazeng@utexas.edu`,
-    hover: 'http://res.cloudinary.com/do5y2yeyu/video/upload/v1506830221/hover_video_i82a6c.mp4',
+    hover: 'http://res.cloudinary.com/do5y2yeyu/video/upload/v1506830221/hover_video_i82a6c',
   },
   delatropic: {
     name: 'Delatropic',

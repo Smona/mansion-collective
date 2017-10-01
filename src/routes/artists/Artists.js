@@ -32,8 +32,8 @@ const hover = {
 
 function randomPos() {
   return {
-    top: `${(typeof window !== 'undefined') ? Math.random() * window.innerHeight * 0.5 : 0}px`,
-    left: `${(typeof window !== 'undefined') ? Math.random() * window.innerWidth * 0.5 : 0}px`,
+    top: `${(typeof window !== 'undefined') ? (Math.random() * window.innerHeight * 0.5).toFixed(2) : 0}px`,
+    left: `${(typeof window !== 'undefined') ? (Math.random() * window.innerWidth * 0.5).toFixed(2) : 0}px`,
   };
 }
 
@@ -47,9 +47,11 @@ function Artists() {
                 onMouseEnter={hover.enable} onMouseLeave={hover.disable}
               >
                 {artists[path].hasOwnProperty('hover') &&
-                <video autoPlay muted loop type="video/mp4" className={s.hover}
-                       src={artists[path].hover} style={randomPos()}
-                />}
+                <video autoPlay muted loop className={s.hover} style={randomPos()}>
+                  <source src={artists[path].hover + '.mp4'} type="video/mp4" />
+                  <source src={artists[path].hover + '.ogg'} type="video/ogg" />
+                  <source src={artists[path].hover + '.webm'} type="video/webm" />
+                </video>}
                 <span className={s.artistName}>{artists[path].name}</span>
               </Link>
             </li>

@@ -13,10 +13,8 @@
   margin: 0 auto;
   text-align: center;
   overflow-x: hidden;
-  overflow-y: auto;
   display: flex;
   flex-flow: column nowrap;
-  height: 100vh;
 }
 
 .artistList {
@@ -27,7 +25,7 @@
   flex-shrink: 0;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 .artistList li {
@@ -51,6 +49,8 @@
   display: none;
   pointer-events: none;
   z-index: 3;
+  max-width: 50vw;
+  max-height: 50vh;
 }
 
 .artistName {
