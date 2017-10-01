@@ -49,4 +49,11 @@
 .hover {
   position: fixed;
   display: none;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.artistName {
+  position: relative;
+  z-index: 5;
 }

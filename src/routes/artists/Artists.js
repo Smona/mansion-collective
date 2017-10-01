@@ -46,11 +46,11 @@ function Artists() {
               <Link to={`/artists/${path}`}
                 onMouseEnter={hover.enable} onMouseLeave={hover.disable}
               >
-                {artists[path].name}
                 {artists[path].hasOwnProperty('hover') &&
-                  <video autoPlay muted loop type="video/mp4" className={s.hover}
-                         src={artists[path].hover} style={randomPos()}
-                  />}
+                <video autoPlay muted loop type="video/mp4" className={s.hover}
+                       src={artists[path].hover} style={randomPos()}
+                />}
+                <span className={s.artistName}>{artists[path].name}</span>
               </Link>
             </li>
           )}
