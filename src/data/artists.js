@@ -18,7 +18,8 @@ Let’s all inspire each other and make some really cool stuff!`
     picture: 'https://res.cloudinary.com/do5y2yeyu/image/upload/w_400/v1506809924/artist_page_main_pic_jfc4yb.jpg',
     bio: `yessy ( n ): experimenter ⚗️, rower 🚣🏻‍♀️, vintage scoot enthusiast 🛵, pho slurper 🍲, dog person 🐶, hitchhiker 👍🏼, creator 👽, etc.
 
-for inquiries, contact me at jessicazeng@utexas.edu`
+for inquiries, contact me at jessicazeng@utexas.edu`,
+    hover: 'http://res.cloudinary.com/do5y2yeyu/video/upload/v1506830221/hover_video_i82a6c.mp4',
   },
   delatropic: {
     name: 'Delatropic',

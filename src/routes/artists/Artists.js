@@ -7,7 +7,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Artists.scss';
 import Link from '../../components/Link/Link';
@@ -30,6 +30,13 @@ const hover = {
   },
 };
 
+function randomPos() {
+  return {
+    top: `${(typeof window !== 'undefined') ? Math.random() * window.innerHeight * 0.5 : 0}px`,
+    left: `${(typeof window !== 'undefined') ? Math.random() * window.innerWidth * 0.5 : 0}px`,
+  };
+}
+
 function Artists() {
   return (
       <div className={s.container}>
@@ -38,7 +45,13 @@ function Artists() {
             <li key={path}>
               <Link to={`/artists/${path}`}
                 onMouseEnter={hover.enable} onMouseLeave={hover.disable}
-              >{artists[path].name}</Link>
+              >
+                {artists[path].name}
+                {artists[path].hasOwnProperty('hover') &&
+                  <video autoPlay muted loop type="video/mp4" className={s.hover}
+                         src={artists[path].hover} style={randomPos()}
+                  />}
+              </Link>
             </li>
           )}
         </ul>
