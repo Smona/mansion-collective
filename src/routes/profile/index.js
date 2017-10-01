@@ -18,6 +18,6 @@ export const action = async (state) => {
   const title = `${artist.name} | MANSION`;
   state.context.onSetTitle(title);
   return (<ContentPage title={title}>
-           <Profile name={artist.name}/>
+           <Profile artist={artist} />
          </ContentPage>);
 };

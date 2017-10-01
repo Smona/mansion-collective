@@ -10,13 +10,14 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Thesis.scss';
+import TextBackground from '../../components/TextBackground';
 
 function Thesis() {
   return (
     <div className={s.root}>
       <h1>Power To Artists</h1>
       <div className={s.container}>
-        <div className={s.thesis}>
+        <TextBackground>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et libero eleifend,
               accumsan magna vitae, pulvinar tellus. Ut at aliquam dui, eu vehicula nibh. Etiam neque
@@ -55,7 +56,7 @@ function Thesis() {
               Mauris pharetra consectetur ante, sed fringilla metus fermentum quis. Aliquam erat
               volutpat. Nulla vitae mauris elementum, blandit arcu a, porttitor nibh.
             </p>
-      </div>
+        </TextBackground>
       </div>
     </div>
   );

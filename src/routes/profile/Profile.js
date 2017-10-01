@@ -10,14 +10,28 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Profile.scss';
+import TextBackground from '../../components/TextBackground';
 
-function Profile({ name }) {
+function Profile({ artist }) {
+  let logo = null;
+  if (artist.hasOwnProperty('logo')) {
+    logo = <img src={artist.logo} alt={`${artist.name} logo`} />;
+  } else {
+    logo = <h1 className={s.nameText}>{artist.name}</h1>;
+  }
+
   return (
       <div className={s.container}>
-        <img src={'https://www.teamunhcr.org.au/images/empty-profile-image.jpg'}
-          alt={`${name}'s profile image`}
+        <img src={artist.picture}
+          alt={`${artist.name}'s profile image`}
         />
-        <h1 className={s.nameText}>{name}</h1>
+        <br />
+        {logo}
+        <TextBackground>
+          <p className={s.bio}>
+            {artist.bio}
+          </p>
+        </TextBackground>
       </div>
   );
 }

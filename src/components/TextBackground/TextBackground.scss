@@ -7,22 +7,8 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-@import '../variables.scss';
 
 .root {
-  width: 100vw;
-  height: 100vh;
-  overflow-y: auto;
-  padding-top: 80px;
-  box-sizing: border-box;
-}
-
-.container {
-}
-
-.homeLink {
-  $padding: 10px;
-  position: fixed;
-  top: $padding;
-  left: $padding;
+  padding: 1em 2em;
+  background: rgba(255, 255, 255, 0.5);
 }

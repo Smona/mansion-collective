@@ -24,6 +24,7 @@
   margin: 0;
   padding: 0;
   flex-grow: 1;
+  flex-shrink: 0;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -31,12 +32,9 @@
 }
 .artistList li {
   $margin: 4em;
-  margin-top: $margin;
+  margin-bottom: $margin;
   text-align: center;
   white-space: nowrap;
-  &:last-of-type {
-    margin-bottom: $margin;
-  }
 }
 .artistList li a {
   font-size: 3em;

@@ -11,12 +11,21 @@
 
 .container {
   margin: 0 auto;
-  padding: 2em 0;
+  padding-bottom: 2em;
   overflow-y: auto;
-  height: 100vh;
   text-align: center;
   box-sizing: border-box;
 }
 
 .nameText {
+}
+
+img {
+  max-width: 100%;
+}
+
+.bio {
+  max-width: 60em;
+  margin: 0 auto;
+  text-align: left;
 }
