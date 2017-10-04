@@ -22,8 +22,13 @@ img {
   max-width: 100%;
 }
 
-.logo {
+img.logo {
   margin-top: -50px;
+}
+
+.logo {
+  //text-transform: uppercase;
+  font-size: 60px;
 }
 
 .bio {
