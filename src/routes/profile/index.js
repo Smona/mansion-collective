@@ -8,13 +8,17 @@
  */
 
 import React from 'react';
-import Artists from '../../data/artists';
 import ContentPage from '../../components/ContentPage';
 import Profile from './Profile';
+import fetch from '../../core/fetch';
 
 export const path = '/artists/:path';
 export const action = async (state) => {
-  const artist = Artists[state.params.path];
+  const response = await fetch(`/graphql?query={artist(path:"${state.params.path}"){bio,name,logo,picture}}`);
+  let artist = await response.json();
+  console.log(artist)
+  artist = artist.data.artist;
+  console.log(artist);
   const title = `${artist.name} | MANSION`;
   state.context.onSetTitle(title);
   return (<ContentPage title={title}>

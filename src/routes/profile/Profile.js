@@ -13,8 +13,9 @@ import s from './Profile.scss';
 import TextBackground from '../../components/TextBackground';
 
 function Profile({ artist }) {
+  console.log(artist);
   let logo = null;
-  if (artist.hasOwnProperty('logo')) {
+  if (artist.logo) {
     logo = <img className={s.logo} src={artist.logo} alt={`${artist.name} logo`} />;
   } else {
     logo = <h1 className={s.logo}>{artist.name}</h1>;
@@ -27,17 +28,16 @@ function Profile({ artist }) {
         />
         <br />
         {logo}
-        <TextBackground>
-          <p className={s.bio}>
-            {artist.bio}
-          </p>
+
+        <TextBackground className={s.bio}>
+          {artist.bio}
         </TextBackground>
       </div>
   );
 }
 
 Profile.propTypes = {
-  artist: PropTypes.isRequired,
+  artist: PropTypes.object.isRequired,
 };
 
 export default withStyles(Profile, s);

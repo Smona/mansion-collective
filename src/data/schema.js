@@ -15,12 +15,15 @@ import {
 import me from './queries/me';
 import content from './queries/content';
 import news from './queries/news';
+import { artist, artists } from './queries/artist';
 
 const schema = new Schema({
   query: new ObjectType({
     name: 'Query',
     fields: {
       me,
+      artist,
+      artists,
       content,
       news,
     },

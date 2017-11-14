@@ -7,11 +7,10 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Artists.scss';
 import Link from '../../components/Link/Link';
-import artists from '../../data/artists';
 
 const hover = {
   enable(e) {
@@ -37,32 +36,36 @@ function randomPos() {
   };
 }
 
-function Artists() {
+function Artists({ artists }) {
   return (
       <div className={s.container}>
         <ul className={s.artistList}>
-          {Object.keys(artists).map(path =>
-            <li key={path}>
-              <Link to={`/artists/${path}`}
+          {artists.map(artist =>
+            <li key={artist.path}>
+              <Link to={`/artists/${artist.path}`}
                 onMouseEnter={hover.enable} onMouseLeave={hover.disable}
               >
-                {artists[path].hasOwnProperty('hover') &&
-                  artists[path].hover.search(/.*\.png|jpg$/) === -1 ?
+                {artist.hasOwnProperty('hover') &&
+                  artist.hover.search(/.*\.png|jpg$/) === -1 ?
                 <video autoPlay muted loop className={s.hover} style={randomPos()}>
-                  <source src={artists[path].hover + '.mp4'} type="video/mp4" />
-                  <source src={artists[path].hover + '.ogg'} type="video/ogg" />
-                  <source src={artists[path].hover + '.webm'} type="video/webm" />
+                  <source src={artist.hover + '.mp4'} type="video/mp4" />
+                  <source src={artist.hover + '.ogg'} type="video/ogg" />
+                  <source src={artist.hover + '.webm'} type="video/webm" />
                 </video>
                 :
-                <img src={artists[path].hover} className={s.hover} style={randomPos()}/>
+                <img src={artist.hover} className={s.hover} style={randomPos()}/>
                 }
-                <span className={s.artistName}>{artists[path].name}</span>
+                <span className={s.artistName}>{artist.name}</span>
               </Link>
             </li>
           )}
         </ul>
       </div>
   );
+}
+
+Artists.propTypes = {
+  artists: PropTypes.array,
 }
 
 export default withStyles(Artists, s);

@@ -10,12 +10,15 @@
 import React from 'react';
 import Artists from './Artists';
 import ContentPage from '../../components/ContentPage';
+import fetch from '../../core/fetch';
 
 export const path = '/artists';
 export const action = async (state) => {
+  const response = await fetch('/graphql?query={artists{name,path,hover}}');
+  const artists = await response.json();
   const title = 'Artists | MANSION';
   state.context.onSetTitle(title);
   return (<ContentPage title={title}>
-           <Artists />
+           <Artists artists={artists.data.artists} />
          </ContentPage>);
 };

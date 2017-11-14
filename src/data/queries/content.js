@@ -86,20 +86,23 @@ async function resolveFileName(path) {
   return { success: false, fileName: null, extension: null };
 }
 
+async function resolve({ request }, { path }) {
+  const { success, fileName, extension } = await resolveFileName(path);
+  if (!success) {
+    return null;
+  }
+
+  const source = await readFile(fileName, { encoding: 'utf8' });
+  return parseContent(path, source, extension);
+};
+
 const content = {
   type: ContentType,
   args: {
     path: { type: new NonNull(StringType) },
   },
-  async resolve({ request }, { path }) {
-    const { success, fileName, extension } = await resolveFileName(path);
-    if (!success) {
-      return null;
-    }
-
-    const source = await readFile(fileName, { encoding: 'utf8' });
-    return parseContent(path, source, extension);
-  },
+  resolve,
 };
 
 export default content;
+export { resolve };
