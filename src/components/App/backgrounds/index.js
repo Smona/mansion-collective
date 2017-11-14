@@ -7,7 +7,7 @@ import metalMansion from './MANSION.png';
 import froggyPattern from './froggy_pattern.png';
 import spaceFroggy from './space_froggy.png';
 
-export default [deathAndLife,
+export default [
   hermes, hermesWhite, hermesInvert,
   metalMansion,
   heartFace,
