@@ -45,7 +45,7 @@ function Artists({ artists }) {
               <Link to={`/artists/${artist.path}`}
                 onMouseEnter={hover.enable} onMouseLeave={hover.disable}
               >
-                {artist.hasOwnProperty('hover') &&
+                {artist.hover &&
                   artist.hover.search(/.*\.png|jpg$/) === -1 ?
                 <video autoPlay muted loop className={s.hover} style={randomPos()}>
                   <source src={artist.hover + '.mp4'} type="video/mp4" />

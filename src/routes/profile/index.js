@@ -14,7 +14,7 @@ import fetch from '../../core/fetch';
 
 export const path = '/artists/:path';
 export const action = async (state) => {
-  const response = await fetch(`/graphql?query={artist(path:"${state.params.path}"){bio,name,logo,picture}}`);
+  const response = await fetch(`/graphql?query={artist(path:"${state.params.path}"){bio,name,logo,picture,fb,soundcloud,insta,twitter,mixcloud,youtube,website}}`);
   let artist = await response.json();
   console.log(artist)
   artist = artist.data.artist;

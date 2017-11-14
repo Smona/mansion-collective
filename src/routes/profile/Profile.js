@@ -12,6 +12,16 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Profile.scss';
 import TextBackground from '../../components/TextBackground';
 
+const socialLinks = {
+  fb: 'https://facebook.com/',
+  soundcloud: 'https://soundcloud.com/',
+  mixcloud: 'https://mixcloud.com/',
+  insta: 'https://instagram.com/',
+  twitter: 'https://twitter.com/',
+  youtube: 'https://youtube.com/',
+  website: 'https://',
+};
+
 function Profile({ artist }) {
   console.log(artist);
   let logo = null;
@@ -23,15 +33,26 @@ function Profile({ artist }) {
 
   return (
       <div className={s.container}>
-        <img src={artist.picture}
+        {artist.picture && <img src={artist.picture}
           alt={`${artist.name}'s profile image`}
-        />
+        />}
         <br />
         {logo}
 
-        <TextBackground className={s.bio}>
+        {artist.bio && <TextBackground className={s.bio}>
           {artist.bio}
-        </TextBackground>
+        </TextBackground>}
+
+        {/* Social Links */
+        Object.keys(socialLinks).
+          filter(key => artist[key]).
+          map(key =>
+          <a target="_blank" rel="noopener"
+            href={socialLinks[key] + artist[key]}
+          >
+            {key}
+          </a>)
+        }
       </div>
   );
 }
