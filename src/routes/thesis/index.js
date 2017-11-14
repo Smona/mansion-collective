@@ -10,12 +10,17 @@
 import React from 'react';
 import Thesis from './Thesis';
 import ContentPage from '../../components/ContentPage';
+import fetch from '../../core/fetch';
 
 export const path = '/thesis';
 export const action = async (state) => {
-  const title = 'Thesis | MANSION';
-  state.context.onSetTitle(title);
-  return (<ContentPage title={title}>
-           <Thesis />
-         </ContentPage>);
+  const response = await fetch('/graphql?query={content(path:"thesis"){content,title}}');
+  let data = await response.json();
+  data = data.data.content;
+  state.context.onSetTitle(data.title);
+  return (<ContentPage title={data.title}>
+           <Thesis>
+             { data.content }
+           </Thesis>
+          </ContentPage>);
 };

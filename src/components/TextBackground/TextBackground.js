@@ -14,14 +14,17 @@ import s from './TextBackground.scss';
 
 function TextBackground({ className, children }) {
   return (
-    <div className={cx(s.root, className)} role="navigation">
-      {children}
+    <div className={cx(s.root, className)}
+      role="navigation"
+      dangerouslySetInnerHTML={{ __html: children }}
+    >
     </div>
   );
 }
 
 TextBackground.propTypes = {
   className: PropTypes.string,
+  children: PropTypes.string,
 };
 
 export default withStyles(TextBackground, s);
