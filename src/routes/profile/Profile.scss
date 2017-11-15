@@ -48,14 +48,19 @@ img.logo {
 
 .icon {
   $size: 50px;
-  height: $size;
+  $stroke-width: 2px;
+  $stroke-color: rgba(255, 255, 255, 0.5);
   margin: 0 20px;
   font-size: $size;
   color: #ffaaf6;
   fill: #ffaaf6;
-}
 
-.mdi-icon {
-  width: 50px;
-  height: 50px;
+  // Makes them a little more readable, but blurrier
+  //stroke: $stroke-color;
+  //stroke-width: $stroke-width;
+  //text-shadow:
+  //  -$stroke-width -$stroke-width 2px $stroke-color,
+  //  $stroke-width -$stroke-width 2px $stroke-color,
+  //  -$stroke-width $stroke-width 2px $stroke-color,
+  //  $stroke-width $stroke-width 2px $stroke-color;
 }
