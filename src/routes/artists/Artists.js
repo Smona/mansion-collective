@@ -31,8 +31,10 @@ const hover = {
 
 function randomPos() {
   return {
-    top: `${(typeof window !== 'undefined') ? (Math.random() * window.innerHeight * 0.7).toFixed(2) : 0}px`,
-    left: `${(typeof window !== 'undefined') ? (Math.random() * window.innerWidth * 0.7).toFixed(2) : 0}px`,
+    top: `${(typeof window !== 'undefined') ?
+      (Math.random() * window.innerHeight * 0.7).toFixed(2) : 0}px`,
+    left: `${(typeof window !== 'undefined') ?
+      (Math.random() * window.innerWidth * 0.7).toFixed(2) : 0}px`,
   };
 }
 
@@ -48,12 +50,12 @@ function Artists({ artists }) {
                 {artist.hover &&
                   artist.hover.search(/.*\.png|jpg$/) === -1 ?
                 <video autoPlay muted loop className={s.hover} style={randomPos()}>
-                  <source src={artist.hover + '.mp4'} type="video/mp4" />
-                  <source src={artist.hover + '.ogg'} type="video/ogg" />
-                  <source src={artist.hover + '.webm'} type="video/webm" />
+                  <source src={`${artist.hover}.mp4`} type="video/mp4" />
+                  <source src={`${artist.hover}.ogg`} type="video/ogg" />
+                  <source src={`${artist.hover}.webm`} type="video/webm" />
                 </video>
                 :
-                <img src={artist.hover} className={s.hover} style={randomPos()}/>
+                <img src={artist.hover} className={s.hover} style={randomPos()} />
                 }
                 <span className={s.artistName}>{artist.name}</span>
               </Link>
