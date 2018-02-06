@@ -9,7 +9,11 @@
 
 
 .root {
-  padding: 1em 2em;
   max-width: 100%;
   background: rgba(255, 255, 255, 0.75);
+  margin: 1em 0;
+  p {
+    padding: 1em 2em;
+    margin: 0;
+  }
 }
