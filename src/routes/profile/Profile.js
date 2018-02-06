@@ -60,7 +60,7 @@ function Profile({ artist }) {
 
   return (
       <div className={s.container}>
-        {artist.picture && <img src={artist.picture}
+        {artist.picture && <img clasName="profile-image" src={artist.picture}
           alt={`${artist.name}'s profile image`}
         />}
         <br />
