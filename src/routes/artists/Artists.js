@@ -60,12 +60,10 @@ class ArtistLink extends Component {
 
   generateNewPosition() {
     if (this.hoverEl) {
-      console.log(this.hoverEl.clientWidth);
       this.setState({
         y: (Math.random() * (window.innerHeight - this.hoverEl.clientHeight)).toFixed(2),
         x: (Math.random() * (window.innerWidth - this.hoverEl.clientWidth)).toFixed(2),
       });
-      console.log(this.state.x, this.state.y);
     }
   }
 

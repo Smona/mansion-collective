@@ -10,11 +10,12 @@
 import React, { Component, PropTypes } from 'react';
 import emptyFunction from 'fbjs/lib/emptyFunction';
 import s from './App.scss';
-import { randInt } from "../../core/math";
-import backgrounds from './backgrounds';
-import Header from '../Header';
-import Feedback from '../Feedback';
-import Footer from '../Footer';
+import { randInt } from '../../core/math';
+import backgrounds from './backgroundURLs';
+
+function roundToHundred(i) {
+  return Math.ceil(i / 200) * 200;
+}
 
 class App extends Component {
 
@@ -39,15 +40,16 @@ class App extends Component {
   constructor() {
     super();
     this.changeBackground = this.changeBackground.bind(this);
+    this.responsiveBG = this.responsiveBG.bind(this);
 
-    // Initially choose random bg on serer
+    // Initially choose random bg on server
     if (typeof document === 'undefined') {
       this.state = { background: this.changeBackground() };
 
     // On client, don't override SSR-provided background
     } else {
-      const ssrBackground = document.getElementById('app-root').style.backgroundImage;
-      this.state = { background: ssrBackground.split('"')[1] };
+      const ssrBackground = document.querySelector(`.${s.bgImage}`).src;
+      this.state = { background: ssrBackground };
     }
   }
 
@@ -79,6 +81,20 @@ class App extends Component {
     this.removeCss();
   }
 
+  responsiveBG() {
+    const urlSegments = this.state.background.split('upload/');
+    let sizeArgs;
+    if (typeof window === 'undefined') {
+      sizeArgs = '';
+    } else if (window.innerWidth > window.innerHeight) {
+      sizeArgs = `w_${roundToHundred(window.innerWidth)}/`;
+    } else {
+      sizeArgs = `h_${roundToHundred(window.innerHeight)}/`;
+    }
+
+    return `${urlSegments[0]}upload/${sizeArgs}${urlSegments[1]}`;
+  }
+
   changeBackground() {
     let newBackground;
     do {
@@ -91,13 +107,9 @@ class App extends Component {
 
   render() {
     return !this.props.error ? (
-      <div id={'app-root'} className={s.app} style={{
-        background: `fixed url('${this.state.background}') center/cover` }}
-      >
-        {/*<Header />*/}
+      <div id={'app-root'} className={s.app}>
+        <img alt="background art" className={s.bgImage} src={this.responsiveBG()} />
         {this.props.children}
-        {/*<Feedback />*/}
-        {/*<Footer />*/}
       </div>
     ) : this.props.children;
   }

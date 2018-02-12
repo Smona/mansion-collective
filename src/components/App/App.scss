@@ -23,6 +23,7 @@ html {
   font-size: 1.2em; /* ~16px; */
   font-family: $font-family-base;
   line-height: 1.375; /* ~22px */
+  overflow: hidden;
 }
 
 /*
@@ -174,4 +175,19 @@ textarea {
   h3 {
     page-break-after: avoid;
   }
+}
+
+.app {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.bgImage {
+  z-index: -1;
+  flex-shrink: 0;
+  position: absolute;
+  min-width: 100vw;
+  min-height: 100vh;
+  max-width: 1000vw;
 }
