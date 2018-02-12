@@ -27,6 +27,7 @@ class App extends Component {
       onPageNotFound: PropTypes.func,
     }),
     children: PropTypes.element.isRequired,
+    route: PropTypes.string,
     error: PropTypes.object,
   };
 
@@ -70,9 +71,7 @@ class App extends Component {
 
   componentWillUpdate(newProps) {
     // Change background on each page change
-    const previousView = this.props.children.type.ComposedComponent;
-    const nextView = newProps.children.type.ComposedComponent;
-    if (previousView !== nextView) {
+    if (this.props.route !== newProps.route) {
       this.setState({ background: this.changeBackground() });
     }
   }
