@@ -22,18 +22,12 @@ const hover = {
   },
 
   disable(e) {
-    console.log(e);
     const el = e.target;
     if (!!el.dataset.originalText) {
       el.innerHTML = el.dataset.originalText;
     }
   },
 };
-
-function randomPos() {
-  return {
-  };
-}
 
 function Artists({ artists }) {
   return (
@@ -58,16 +52,21 @@ class ArtistLink extends Component {
       x: 0,
       y: 0,
     };
+  }
+
+  componentDidMount() {
     this.generateNewPosition();
   }
 
   generateNewPosition() {
-    this.setState({
-      x: (typeof window !== 'undefined') ?
-        (Math.random() * window.innerHeight * 0.7).toFixed(2) : 0,
-      y: (typeof window !== 'undefined') ?
-        (Math.random() * window.innerWidth * 0.7).toFixed(2) : 0,
-    });
+    if (this.hoverEl) {
+      console.log(this.hoverEl.clientWidth);
+      this.setState({
+        y: (Math.random() * (window.innerHeight - this.hoverEl.clientHeight)).toFixed(2),
+        x: (Math.random() * (window.innerWidth - this.hoverEl.clientWidth)).toFixed(2),
+      });
+      console.log(this.state.x, this.state.y);
+    }
   }
 
   hoverPos() {
@@ -89,13 +88,19 @@ class ArtistLink extends Component {
       >
         {this.props.hoverImg &&
           this.props.hoverImg.search(/.*\.png|jpg$/) === -1 ?
-        <video autoPlay muted loop className={s.hover} style={this.hoverPos()}>
+        <video autoPlay muted loop
+          className={s.hover} style={this.hoverPos()}
+          ref={hoverEl => { this.hoverEl = hoverEl; }}
+        >
           <source src={`${this.props.hoverImg}.mp4`} type="video/mp4" />
           <source src={`${this.props.hoverImg}.ogg`} type="video/ogg" />
           <source src={`${this.props.hoverImg}.webm`} type="video/webm" />
         </video>
         :
-        <img src={this.props.hoverImg} className={s.hover} style={this.hoverPos()} />
+        <img src={this.props.hoverImg}
+          className={s.hover} style={this.hoverPos()}
+          ref={hoverEl => { this.hoverEl = hoverEl; }}
+        />
         }
         {this.props.children}
       </Link>
@@ -110,6 +115,7 @@ Artists.propTypes = {
 ArtistLink.propTypes = {
   url: PropTypes.string,
   children: PropTypes.node,
+  hoverImg: PropTypes.string,
 };
 
 export default withStyles(Artists, s);

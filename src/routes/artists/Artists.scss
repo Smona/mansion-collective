@@ -42,13 +42,13 @@
   text-decoration: none;
   text-transform: uppercase;
   &:hover .hover {
-    display: block;
+    opacity: 1;
   }
 }
 
 .hover {
   position: fixed;
-  display: none;
+  opacity: 0;
   pointer-events: none;
   z-index: 3;
   max-width: 50vw;
