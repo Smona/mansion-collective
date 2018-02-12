@@ -22,6 +22,7 @@ const hover = {
   },
 
   disable(e) {
+    console.log(e);
     const el = e.target;
     if (!!el.dataset.originalText) {
       el.innerHTML = el.dataset.originalText;
@@ -31,43 +32,84 @@ const hover = {
 
 function randomPos() {
   return {
-    top: `${(typeof window !== 'undefined') ?
-      (Math.random() * window.innerHeight * 0.7).toFixed(2) : 0}px`,
-    left: `${(typeof window !== 'undefined') ?
-      (Math.random() * window.innerWidth * 0.7).toFixed(2) : 0}px`,
   };
 }
 
 function Artists({ artists }) {
   return (
-      <div className={s.container}>
-        <ul className={s.artistList}>
-          {artists.map(artist =>
-            <li key={artist.path}>
-              <Link to={`/artists/${artist.path}`}
-                onMouseEnter={hover.enable} onMouseLeave={hover.disable}
-              >
-                {artist.hover &&
-                  artist.hover.search(/.*\.png|jpg$/) === -1 ?
-                <video autoPlay muted loop className={s.hover} style={randomPos()}>
-                  <source src={`${artist.hover}.mp4`} type="video/mp4" />
-                  <source src={`${artist.hover}.ogg`} type="video/ogg" />
-                  <source src={`${artist.hover}.webm`} type="video/webm" />
-                </video>
-                :
-                <img src={artist.hover} className={s.hover} style={randomPos()} />
-                }
-                <span className={s.artistName}>{artist.name}</span>
-              </Link>
-            </li>
-          )}
-        </ul>
-      </div>
+    <div className={s.container}>
+      <ul className={s.artistList}>
+        {artists.map(artist =>
+          <li key={artist.path}>
+            <ArtistLink url={artist.path} hoverImg={artist.hover}>
+              <span className={s.artistName}>{artist.name}</span>
+            </ArtistLink>
+          </li>
+        )}
+      </ul>
+    </div>
   );
+}
+
+class ArtistLink extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      x: 0,
+      y: 0,
+    };
+    this.generateNewPosition();
+  }
+
+  generateNewPosition() {
+    this.setState({
+      x: (typeof window !== 'undefined') ?
+        (Math.random() * window.innerHeight * 0.7).toFixed(2) : 0,
+      y: (typeof window !== 'undefined') ?
+        (Math.random() * window.innerWidth * 0.7).toFixed(2) : 0,
+    });
+  }
+
+  hoverPos() {
+    return {
+      left: `${this.state.x}px`,
+      top: `${this.state.y}px`,
+    };
+  }
+
+  mouseLeave(e) {
+    hover.disable(e);
+    this.generateNewPosition();
+  }
+
+  render() {
+    return (
+      <Link to={`/artists/${this.props.url}`}
+        onMouseEnter={hover.enable} onMouseLeave={e => this.mouseLeave(e)}
+      >
+        {this.props.hoverImg &&
+          this.props.hoverImg.search(/.*\.png|jpg$/) === -1 ?
+        <video autoPlay muted loop className={s.hover} style={this.hoverPos()}>
+          <source src={`${this.props.hoverImg}.mp4`} type="video/mp4" />
+          <source src={`${this.props.hoverImg}.ogg`} type="video/ogg" />
+          <source src={`${this.props.hoverImg}.webm`} type="video/webm" />
+        </video>
+        :
+        <img src={this.props.hoverImg} className={s.hover} style={this.hoverPos()} />
+        }
+        {this.props.children}
+      </Link>
+    );
+  }
 }
 
 Artists.propTypes = {
   artists: PropTypes.array,
-}
+};
+
+ArtistLink.propTypes = {
+  url: PropTypes.string,
+  children: PropTypes.node,
+};
 
 export default withStyles(Artists, s);
